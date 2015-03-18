@@ -1,0 +1,60 @@
+{
+  "name": "keyfinder",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "description": "Search recusevly",
+  "homepage": "",
+  "bugs": "",
+  "author": {
+    "name": "Simon Johansson",
+    "email": "mail@simon-johansson.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-coffee": "~0.9.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-coffeelint": "~0.0.8",
+    "grunt-release": "^0.11.0",
+    "istanbul": "^0.3.7",
+    "load-grunt-tasks": "^3.1.0",
+    "chai": "^2.1.1",
+    "lodash": "^3.5.0",
+    "mocha": "^2.2.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-mocha-test": "^0.12.7",
+    "coffee-script": "^1.9.1",
+    "coveralls": "^2.11.2"
+  },
+  "dependencies": {
+    "is-object": "^1.0.1"
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "dist/test/test.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
+  },
+  "scripts": {
+    "test": "grunt test",
+    "browser": "",
+    "travis": "node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  }
+}
