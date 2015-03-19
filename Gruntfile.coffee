@@ -86,6 +86,7 @@ module.exports = (grunt)->
   ]
 
   grunt.registerTask 'default', [
+    'clean'
     'compile'
     'test'
   ]
