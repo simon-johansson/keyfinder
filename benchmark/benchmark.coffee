@@ -2,12 +2,23 @@ _ = require 'lodash'
 benchmark = require 'benchmark'
 bigObj = require './data/generated.json'
 
+kvp = require 'key-value-pointer'
 deepPluck = require 'deep-pluck'
-keyfinder = require '../src/index.coffee'
+keyfinder = require '../src/lib/index.coffee'
 
 suite = new benchmark.Suite()
 
+queryAll = (obj, name) ->
+  list = []
+  kvp(obj).query (node) ->
+    if node.key is name
+      list.push node.value
+    false
+  list
+
 suite
+.add 'key-value-pointer', ->
+  queryAll(bigObj, 'name').length
 .add 'deep-pluck', ->
   deepPluck(bigObj, 'name').length
 .add 'keyfinder', ->
