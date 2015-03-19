@@ -1,23 +1,34 @@
 {
   "name": "keyfinder",
   "version": "0.0.0",
-  "main": "lib/index.js",
-  "description": "Search recusevly",
-  "homepage": "",
-  "bugs": "",
+  "description": "",
   "author": {
     "name": "Simon Johansson",
     "email": "mail@simon-johansson.com"
   },
+  "scripts": {
+    "test": "grunt test",
+    "compile": "grunt compile",
+    "coveralls": "node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha dist/test/test.js --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "browser": ""
+  },
+  "main": "dist/lib/index.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/simon-johansson/keyfinder"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
+  "bugs": "https://github.com/simon-johansson/keyfinder/issues",
+  "keywords": [
+    "pluck",
+    "deep",
+    "find",
+    "object",
+    "pick",
+    "search"
   ],
+  "dependencies": {
+    "is-object": "^1.0.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-watch": "~0.5.3",
@@ -34,28 +45,23 @@
     "grunt-mocha-test": "^0.12.7",
     "coffee-script": "^1.9.1",
     "coveralls": "^2.11.2",
-    "deep-pluck": "^0.1.2"
+    "deep-pluck": "^0.1.2",
+    "benchmark": "^1.0.0"
   },
-  "dependencies": {
-    "is-object": "^1.0.1"
-  },
+  "license": "MIT",
+  "homepage": "https://github.com/simon-johansson/keyfinder",
   "testling": {
-    "harness": "mocha-bdd",
-    "files": "dist/test/test.js",
     "browsers": [
-      "ie/6..latest",
+      "android-browser/latest",
       "chrome/22..latest",
       "firefox/16..latest",
-      "safari/latest",
-      "opera/11.0..latest",
-      "iphone/6",
+      "ie/6..latest",
       "ipad/6",
-      "android-browser/latest"
-    ]
-  },
-  "scripts": {
-    "test": "grunt test",
-    "browser": "",
-    "travis": "node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+      "iphone/6",
+      "opera/11.0..latest",
+      "safari/latest"
+    ],
+    "files": "dist/test/test.js",
+    "harness": "mocha-bdd"
   }
 }
