@@ -27,7 +27,8 @@
     "search"
   ],
   "dependencies": {
-    "is-object": "^1.0.1"
+    "is-object": "^1.0.1",
+    "is-function": "^1.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
