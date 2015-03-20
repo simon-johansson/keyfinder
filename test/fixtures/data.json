@@ -19,12 +19,7 @@
       }, {
         "name": "Two",
         "score": 96
-      },
-      [
-        {
-          "name": "Simon"
-        }
-      ]
+      }
     ]
   }, {
     "category": "CouchDB",
