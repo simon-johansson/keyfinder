@@ -26,13 +26,13 @@ module.exports = (grunt)->
     coffee:
       lib:
         expand: true
-        cwd: 'src/lib'
+        cwd: 'lib/'
         src: ['**/*.coffee']
         dest: 'dist/lib'
         ext: '.js'
       test:
         expand: true
-        cwd: 'src/test/'
+        cwd: 'test/'
         src: ['**/*.coffee']
         dest: 'dist/test/'
         ext: '.js'
@@ -43,7 +43,18 @@ module.exports = (grunt)->
           require: 'coffee-script/register'
           reporter: 'spec'
         src: [
-          'src/test/**/*.coffee'
+          'test/**/*.coffee'
+        ]
+
+    copy:
+      dist:
+        files: [
+          expand: true,
+          cwd: 'test',
+          dest: 'dist/test/',
+          src: [
+            '**/*.json'
+          ]
         ]
 
     watch:
@@ -53,7 +64,7 @@ module.exports = (grunt)->
         files: 'Gruntfile.coffee'
         tasks: ['coffeelint:gruntfile']
       lib:
-        files: ['src/**/*.coffee']
+        files: ['lib/**/*.coffee']
         tasks: ['coffeelint:lib', 'coffee:lib', 'mochaTest']
       test:
         files: ['test/**/*.coffee']
@@ -61,24 +72,11 @@ module.exports = (grunt)->
 
     clean: ['dist/']
 
-  grunt.event.on 'watch', (action, files, target)->
-    grunt.log.writeln "#{target}: #{files} has #{action}"
-
-    # coffeelint
-    grunt.config ['coffeelint', target], src: files
-
-    # coffee
-    coffeeData = grunt.config ['coffee', target]
-    files = [files] if _.isString files
-    files = files.map (file)-> path.relative coffeeData.cwd, file
-    coffeeData.src = files
-
-    grunt.config ['coffee', target], coffeeData
-
   # tasks.
   grunt.registerTask 'compile', [
     'coffeelint'
     'coffee'
+    'copy'
   ]
 
   grunt.registerTask 'test', [
