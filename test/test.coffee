@@ -2,12 +2,6 @@
 { expect } = require 'chai'
 
 keyfinder = require '../lib/index'
-data      = require './fixtures/data.json'
-
-# deep nested key
-# qqnested array
-# test with huge file
-# inception, key within a key
 
 describe 'keyfinder module\n', ->
 
@@ -33,6 +27,20 @@ describe 'keyfinder module\n', ->
       results = keyfinder obj, 'c'
       expect(results).to.have.length 1
       expect(results).to.have.eql ['cc']
+
+    it 'find deeply nested key in multi level object', ->
+      obj = require './fixtures/nested.json'
+
+      results = keyfinder obj, 'key'
+      expect(results).to.have.length 1
+      expect(results).to.have.eql ['value']
+
+    it 'find deeply nested key in multi level array', ->
+      obj = require './fixtures/nested_array.json'
+
+      results = keyfinder obj, 'inception'
+      expect(results).to.have.length 2
+      expect(results).to.have.eql [false, true]
 
     it 'find multiple matching keys in nested object', ->
       obj =
@@ -70,6 +78,18 @@ describe 'keyfinder module\n', ->
       results = keyfinder obj, 'x'
       expect(results).to.have.length 4
       expect(results).to.eql [undefined, null, 0, []]
+
+    it '  ', ->
+      obj =
+        a:
+          a: [
+            { a: 'aa' }
+          ]
+          b: 'bb'
+
+      results = keyfinder obj, 'a'
+      expect(results).to.have.length 3
+      expect(results).to.eql [ { a: [{ a: 'aa' }], b: 'bb' }, [ { a: 'aa' } ], 'aa' ]
 
     it 'return an empty array if no needle in haystack', ->
       obj =

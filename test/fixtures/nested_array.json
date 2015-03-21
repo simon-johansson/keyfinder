@@ -1,0 +1,30 @@
+[
+  [
+    [
+      {
+        "a": [
+          {
+            "dream": [
+              {
+                "within": [
+                  {
+                    "a": {
+                      "dream": [
+                        {
+                          "inception": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ],
+  {
+    "inception": true
+  }
+]

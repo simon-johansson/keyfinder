@@ -1,51 +1,15 @@
 {
-  "section a": [
-    {
-      "sub_section": {
-        "sub_section_items": [
-          {
-          "name": "item1"
-          },
-          {
-          "name": "item2"
+  "this": {
+    "is": {
+      "a": {
+        "really": {
+          "deep": {
+            "nested": {
+              "key": "value"
+            }
           }
-        ]
-      }
-    }
-  ],
-  "section b": [
-    {
-      "sub_section": {
-        "sub_section_items": [
-          {
-            "name": "item3"
-          },
-          {
-            "name": "item4"
-          }
-        ]
-      }
-    }
-  ],
-  "oddball": [
-      {
-      "sub_section": {
-        "sub_section_items": [
-          {
-          "name": "item5"
-        },
-        {
-          "name": "item6"
         }
-        ]
       }
-    },
-    {
-      "oddbal_sub_section": [
-        {
-          "name": "item7"
-        }
-      ]
     }
-  ]
+  }
 }
