@@ -1,7 +1,7 @@
 
-isFunction = require 'is-function'
 isObjectOrArray   = require 'is-object'
 isArray           = require 'is-array'
+isFunction        = require 'is-function'
 
 ###
 when passed an object, returns an array of its keys.
