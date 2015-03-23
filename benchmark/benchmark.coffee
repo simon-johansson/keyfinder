@@ -1,10 +1,11 @@
-_ = require 'lodash'
+
 benchmark = require 'benchmark'
 bigObj = require './data/generated.json'
 
 kvp = require 'key-value-pointer'
 deepPluck = require 'deep-pluck'
-keyfinder = require '../src/lib/index.coffee'
+stackoverflow = require './stackoverflow'
+keyfinder = require '../lib/index.coffee'
 
 suite = new benchmark.Suite()
 
@@ -21,6 +22,8 @@ suite
   queryAll(bigObj, 'name').length
 .add 'deep-pluck', ->
   deepPluck(bigObj, 'name').length
+.add 'http://stackoverflow.com/a/15643382/1113977', ->
+  stackoverflow(bigObj, 'name').length
 .add 'keyfinder', ->
   keyfinder(bigObj, 'name').length
 .on 'cycle', (event) ->
