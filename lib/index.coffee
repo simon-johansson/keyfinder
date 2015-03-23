@@ -1,6 +1,7 @@
 
-isObject   = require 'is-object'
 isFunction = require 'is-function'
+isObjectOrArray   = require 'is-object'
+isArray           = require 'is-array'
 
 ###
 when passed an object, returns an array of its keys.
@@ -17,8 +18,7 @@ arrayify = (obj) ->
 
 find = (haystack, needle, memo = []) ->
 
-  # isObject returns true from both objects and arrays
-  if needle and isObject(haystack)
+  if needle and isObjectOrArray(haystack)
 
     if needle of haystack
       memo.push haystack[needle]
@@ -29,7 +29,7 @@ find = (haystack, needle, memo = []) ->
       if isFunction(needle)
         needle(key, val)
 
-      if isObject(val)
+      if isObjectOrArray(val)
         find(val, needle, memo)
 
   return memo
