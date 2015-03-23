@@ -9,10 +9,14 @@
 ## Install
 
 ```sh
-$ npm install --save keyfinder
+$ npm install keyfinder --save
 ```
 
 ## Usage
+
+### keyfinder(object/array, [predicate = "string"])
+
+Returns an array containing all the values of the keys that match the predicate.
 
 ```js
 var keyfinder = require('keyfinder');
@@ -30,8 +34,24 @@ keyfinder(obj, 'a');
 // → [ 'aa', 'aaa' ]
 ```
 
+### keyfinder(object/array, [callback = "function"])
+
+Iterates through the given object/array and calls the callback for every key/value pair.
+
+```js
+var keyfinder = require('keyfinder');
+
+// "obj" is a JavaScript object or array
+keyfinder(obj, function(key, value, parent) {
+  // key    = key or index depending on if the parent is an object or an array
+  // value  = value of the key
+  // parent = type of parent, 'array' or 'object'
+});
+```
+
 ```sh
 # creates a browser.js
+$ git clone https://github.com/simon-johansson/keyfinder.git && cd keyfinder
 $ npm install
 $ npm run browser
 ```
@@ -39,6 +59,7 @@ $ npm run browser
 ## Tests
 
 ```sh
+$ git clone https://github.com/simon-johansson/keyfinder.git && cd keyfinder
 $ npm install
 $ npm test
 ```
