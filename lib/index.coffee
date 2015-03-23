@@ -27,7 +27,8 @@ find = (haystack, needle, memo = []) ->
       val = haystack[key]
 
       if isFunction(needle)
-        needle(key, val)
+        parent = if isArray(haystack) then 'array' else 'object'
+        needle(key, val, parent)
 
       if isObjectOrArray(val)
         find(val, needle, memo)
