@@ -14,7 +14,7 @@ $ npm install keyfinder --save
 
 ## Usage
 
-### keyfinder(object/array, [predicate = "string"])
+### keyfinder(object/array, "string")
 
 Returns an array containing all the values of the keys that match the predicate.
 
@@ -34,18 +34,18 @@ keyfinder(obj, 'a');
 // → [ 'aa', 'aaa' ]
 ```
 
-### keyfinder(object/array, [callback = "function"])
+### keyfinder(object/array, callback)
 
 Iterates through the given object/array and calls the callback for every key/value pair.
 
 ```js
 var keyfinder = require('keyfinder');
 
-// "obj" is a JavaScript object or array
+// "obj" should be a JavaScript object or array.
 keyfinder(obj, function(key, value, parent) {
   // key    = key or index depending on if the parent is an object or an array
   // value  = value of the key
-  // parent = type of parent, 'array' or 'object'
+  // parent = type of parent, "array" or "object"
 });
 ```
 
