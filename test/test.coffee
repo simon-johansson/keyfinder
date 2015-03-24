@@ -5,7 +5,7 @@ keyfinder = require '../lib/index'
 
 describe 'keyfinder module\n', ->
 
-  describe 'keyfinder(<haystack>, <needle = "string">)', ->
+  describe 'keyfinder(object/array, [predicate = "string"])', ->
 
     it 'find key in single level object', ->
       obj =
@@ -17,7 +17,7 @@ describe 'keyfinder module\n', ->
       expect(results).to.have.length 1
       expect(results).to.have.eql ['cc']
 
-    it 'find nested key in multi level object', ->
+    it 'find key nested in multi level object', ->
       obj =
         a: 'aa'
         b:
@@ -42,7 +42,7 @@ describe 'keyfinder module\n', ->
       expect(results).to.have.length 2
       expect(results).to.have.eql [false, true]
 
-    it 'find multiple matching keys in nested object', ->
+    it 'find multiple matching keys', ->
       obj =
         a: 'aa'
         b:
@@ -79,7 +79,7 @@ describe 'keyfinder module\n', ->
       expect(results).to.have.length 4
       expect(results).to.eql [undefined, null, 0, []]
 
-    it '  ', ->
+    it 'return multiple matches even if they are nested within each other', ->
       obj =
         a:
           a: [
@@ -91,7 +91,12 @@ describe 'keyfinder module\n', ->
       expect(results).to.have.length 3
       expect(results).to.eql [ { a: [{ a: 'aa' }], b: 'bb' }, [ { a: 'aa' } ], 'aa' ]
 
-    it 'return an empty array if no needle in haystack', ->
+    it 'return an empty array if no predicate is passed', ->
+      results = keyfinder {a: 'aa'}
+      expect(results).to.be.an "array"
+      expect(results).to.have.length 0
+
+    it 'return an empty array if no match is found', ->
       obj =
         a: 'aa'
         b: 'bb'
@@ -102,21 +107,18 @@ describe 'keyfinder module\n', ->
       expect(results).to.have.length 0
 
     it 'return an empty array when haystack is not an object or array\n', ->
-      expect(keyfinder('string', 'needle')).to.have.length 0
-      expect(keyfinder(666, 'needle')).to.have.length 0
-      expect(keyfinder(null, 'needle')).to.have.length 0
-      expect(keyfinder(undefined, 'needle')).to.have.length 0
-      expect(keyfinder(false, 'needle')).to.have.length 0
-      expect(keyfinder(true, 'needle')).to.have.length 0
+      expect(keyfinder('string', 'predicate')).to.have.length 0
+      expect(keyfinder(666, 'predicate')).to.have.length 0
+      expect(keyfinder(null, 'predicate')).to.have.length 0
+      expect(keyfinder(undefined, 'predicate')).to.have.length 0
+      expect(keyfinder(false, 'predicate')).to.have.length 0
+      expect(keyfinder(true, 'predicate')).to.have.length 0
 
 
-  describe 'keyfinder(<haystack>, <clb = function>)', ->
+  describe 'keyfinder(object/array, [callback = "function"])', ->
 
-    it 'pass callback function instead of string as needle', ->
+    it 'should be able to pass function instead of string as second argument', ->
       expect(-> keyfinder {a: 'aa'}, ->).to.not.throw /error/
-      results = keyfinder {a: 'aa'}, ->
-      expect(results).to.be.an "array"
-      expect(results).to.have.length 0
 
     it 'callback should receive each key/val pair in heystack', ->
       obj =
@@ -126,12 +128,18 @@ describe 'keyfinder module\n', ->
 
       fn = (obj) ->
         list = []
-        keyfinder obj, (key, val) ->
-          obj = {}
-          obj[key] = val
+        keyfinder obj, (key, val, parent) ->
+          obj =
+            key: key
+            val: val
+            parent: parent
           list.push obj
         list
 
       results = fn obj
       expect(results).to.have.length 3
-      expect(results).to.eql [ { a: 'aa' }, { b: 'bb' }, { c: 'cc' } ]
+      expect(results).to.eql [
+        { key: 'a', val: 'aa', parent: 'object' },
+        { key: 'b', val: 'bb', parent: 'object' },
+        { key: 'c', val: 'cc', parent: 'object' },
+      ]
