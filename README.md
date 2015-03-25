@@ -49,17 +49,10 @@ keyfinder(obj, function(key, value, parent) {
 });
 ```
 
-```sh
-# creates a browser.js
-$ git clone https://github.com/simon-johansson/keyfinder.git && cd keyfinder
-$ npm install
-$ npm run browser
-```
-
 ## Tests
 
 ```sh
-$ git clone https://github.com/simon-johansson/keyfinder.git && cd keyfinder
+# clone this repo
 $ npm install
 $ npm test
 ```
