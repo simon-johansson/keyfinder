@@ -1,6 +1,6 @@
 {
   "name": "keyfinder",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Deep search for keys in objects and arrays and pluck their respective values.",
   "author": {
     "name": "Simon Johansson",
