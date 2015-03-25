@@ -1,11 +1,12 @@
-/node_modules/
-/coverage/
+/node_modules
+/coverage
+/benchmark
+/lib
+/test
 
 .travis*
 Gruntfile.coffee
 Gruntfile.js
-
-src/
 
 .git/
 .gitignore
@@ -13,7 +14,11 @@ src/
 .DS_Store
 .jshintrc
 .editorconfig
+.coveralls.yml
 coffeelint.json
+
+README.md
+Changelog.md
 LICENSE
 
 *.sublime-project
