@@ -72,6 +72,20 @@ module.exports = (grunt)->
 
     clean: ['dist/']
 
+    browserify:
+      dist:
+        files:
+          'keyfinder.js': ['lib/index.coffee']
+        options:
+          transform: ['coffeeify']
+          browserifyOptions:
+            standalone: 'keyfinder'
+
+    release:
+      options:
+        additionalFiles: ['bower.json']
+        beforeRelease: ['browserify']
+
   # tasks.
   grunt.registerTask 'compile', [
     'coffeelint'
