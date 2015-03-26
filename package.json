@@ -1,6 +1,6 @@
 {
   "name": "keyfinder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Deep search for keys in objects and arrays and pluck their respective values.",
   "author": {
     "name": "Simon Johansson",
@@ -9,8 +9,7 @@
   "scripts": {
     "test": "grunt test",
     "compile": "grunt compile",
-    "coveralls": "node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha dist/test/test.js --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "browser": ""
+    "coveralls": "node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha dist/test/test.js --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "main": "dist/lib/index.js",
   "repository": {
@@ -49,7 +48,11 @@
     "coveralls": "^2.11.2",
     "deep-pluck": "^0.1.2",
     "benchmark": "^1.0.0",
-    "grunt-contrib-copy": "^0.8.0"
+    "grunt-contrib-copy": "^0.8.0",
+    "key-value-pointer": "^0.2.8",
+    "coffeeify": "^1.0.0",
+    "browserify": "^9.0.3",
+    "grunt-browserify": "^3.5.1"
   },
   "license": "MIT",
   "homepage": "https://github.com/simon-johansson/keyfinder",
