@@ -3,10 +3,12 @@
 /benchmark
 /lib
 /test
+/dist/test
 
 .travis*
 Gruntfile.coffee
 Gruntfile.js
+keyfinder.js
 
 .git/
 .gitignore
@@ -17,8 +19,6 @@ Gruntfile.js
 .coveralls.yml
 coffeelint.json
 
-README.md
-Changelog.md
 LICENSE
 
 *.sublime-project
