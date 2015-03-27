@@ -1,5 +1,5 @@
 /*!
- *   keyfinder - v0.0.3
+ *   keyfinder - v0.0.5
  *   Deep search for keys in objects and arrays and pluck their respective values.
  *   https://github.com/simon-johansson/keyfinder
  *   by Simon Johansson <mail@simon-johansson.com>
