@@ -9,6 +9,7 @@
 Gruntfile.coffee
 Gruntfile.js
 keyfinder.js
+keyfinder.min.js
 
 .git/
 .gitignore
