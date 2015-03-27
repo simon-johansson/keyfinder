@@ -12,6 +12,10 @@
 $ npm install keyfinder --save
 ```
 
+```sh
+$ bower install keyfinder --save
+```
+
 ## Usage
 
 ### keyfinder(object/array, "string")
@@ -19,8 +23,6 @@ $ npm install keyfinder --save
 Returns an array containing all the values of the keys that match the predicate.
 
 ```js
-var keyfinder = require('keyfinder');
-
 var obj = {
   a: 'aa',
   b: 'bb',
@@ -39,13 +41,11 @@ keyfinder(obj, 'a');
 Iterates through the given object/array and calls the callback for every key/value pair.
 
 ```js
-var keyfinder = require('keyfinder');
-
 // "obj" should be a JavaScript object or array.
 keyfinder(obj, function(key, value, parent) {
   // key    = key or index depending on if the parent is an object or an array
   // value  = value of the key
-  // parent = type of parent, "array" or "object"
+  // parent = type of parent,  "object" or "array"
 });
 ```
 
