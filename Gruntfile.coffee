@@ -75,31 +75,60 @@ module.exports = (grunt)->
     browserify:
       dist:
         files:
-          'keyfinder.js': ['lib/index.coffee']
+          '<%= pkg.name %>.js': ['lib/index.coffee']
         options:
           transform: ['coffeeify']
           browserifyOptions:
-            standalone: 'keyfinder'
+            standalone: '<%= pkg.name %>'
+
+    uglify:
+      client:
+        files: '<%= pkg.name %>.min.js': ['<%= pkg.name %>.js']
+      node:
+        options:
+          mangle: false
+          compress: false
+          beautify: true
+        files: 'dist/lib/index.js': ['dist/lib/index.js']
+
+    usebanner:
+      options:
+        position: 'top'
+        banner: """
+         /*!
+          *   <%= pkg.name %> - v<%= pkg.version %>
+          *   <%= pkg.description %>
+          *   <%= pkg.homepage %>
+          *   by <%= pkg.author.name %> <<%= pkg.author.email %>>
+          *   <%= pkg.license %> License
+          */
+
+        """
+        linebreak: true
+      files:
+        src: ['keyfinder.js', 'keyfinder.min.js', 'dist/lib/index.js']
 
     release:
       options:
         additionalFiles: ['bower.json']
-        beforeRelease: ['browserify']
 
   # tasks.
   grunt.registerTask 'compile', [
-    'coffeelint'
+    'clean'
     'coffee'
     'copy'
+    'browserify'
+    'uglify'
+    'usebanner'
   ]
 
   grunt.registerTask 'test', [
+    'coffeelint'
     'mochaTest'
   ]
 
   grunt.registerTask 'default', [
-    'clean'
-    'compile'
     'test'
+    'compile'
   ]
 
