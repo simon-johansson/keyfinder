@@ -106,11 +106,22 @@ module.exports = (grunt)->
         """
         linebreak: true
       files:
-        src: ['keyfinder.js', 'keyfinder.min.js', 'dist/lib/index.js']
+        src: ['<%= pkg.name %>.js', '<%= pkg.name %>.min.js', 'dist/lib/index.js']
 
-    release:
+    bump:
       options:
-        additionalFiles: ['bower.json']
+        files: ['package.json', 'bower.json']
+        updateConfigs: ['pkg']
+        commitFiles: ['package.json', 'bower.json', '<%= pkg.name %>.js', '<%= pkg.name %>.min.js']
+        pushTo: 'origin'
+
+    shell:
+      publish:
+        command: "npm publish"
+
+  grunt.registerTask "release", "Release a new version, push it and publish it", (target) ->
+      target = "patch" unless target
+      grunt.task.run "bump-only:#{target}", "compile", "bump-commit", "shell:publish"
 
   # tasks.
   grunt.registerTask 'compile', [
