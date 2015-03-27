@@ -5,7 +5,7 @@ isFunction        = require 'is-function'
 
 ###
 when passed an object, returns an array of its keys.
-when passed an array, returns an array of its indexes.
+when passed an array, returns an array of indexes.
 
 arrayify({a: 'aa', b: 'bb', c: 'cc'})
 -> ['a', 'b', 'c']
