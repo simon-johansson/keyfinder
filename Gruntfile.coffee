@@ -120,8 +120,8 @@ module.exports = (grunt)->
         command: "npm publish"
 
   grunt.registerTask "release", "Release a new version, push it and publish it", (target) ->
-      target = "patch" unless target
-      grunt.task.run "bump-only:#{target}", "compile", "bump-commit", "shell:publish"
+    target = "patch" unless target
+    grunt.task.run "bump-only:#{target}", "compile", "bump-commit", "shell:publish"
 
   # tasks.
   grunt.registerTask 'compile', [
