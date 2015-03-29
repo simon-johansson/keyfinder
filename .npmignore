@@ -19,6 +19,7 @@ keyfinder.min.js
 .editorconfig
 .coveralls.yml
 coffeelint.json
+bower.json
 
 LICENSE
 
