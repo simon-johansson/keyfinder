@@ -60,7 +60,7 @@ $ npm test
 
 ## License
 
-MIT © [Simon Johansson]()
+MIT © [Simon Johansson](mailto:mail@simon-johansson.com)
 
 [npm-image]: https://badge.fury.io/js/keyfinder.svg
 [npm-url]: https://npmjs.org/package/keyfinder
