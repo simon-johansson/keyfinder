@@ -3,6 +3,8 @@
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url]
 <!-- [![Code Climate][codeclimate-image]][codeclimate-url] -->
 
+[![Sauce Test Status][saucelabs-image]][saucelabs-url]
+
 > Deep search for keys in objects and arrays and pluck their respective values.
 
 
@@ -70,5 +72,7 @@ MIT © [Simon Johansson](mailto:mail@simon-johansson.com)
 [coveralls-url]: https://coveralls.io/r/simon-johansson/keyfinder?branch=master
 [daviddm-image]: https://david-dm.org/simon-johansson/keyfinder.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/simon-johansson/keyfinder
+[saucelabs-image]: https://saucelabs.com/browser-matrix/keyfinder.svg
+[saucelabs-url]: https://saucelabs.com/u/keyfinder
 <!-- [codeclimate-image]: https://codeclimate.com/github/simon-johansson/keyfinder/badges/gpa.svg -->
 <!-- [codeclimate-url]: https://codeclimate.com/github/simon-johansson/keyfinder -->
