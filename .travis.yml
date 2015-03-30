@@ -1,10 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-  - 'iojs'
+  - iojs
   - '0.12'
   - '0.10'
-
 before_script: npm run compile
-after_script: npm run coveralls
-
+after_script:
+  - npm run coveralls
+  - npm run zuul
+env:
+  global:
+  - secure: UqWjzd+mC/sDkUk6pYH3qgtH06TKD/PF1wK3Vo+2eNHtto9JzHInnc/11TAtXyVSwBkR+JPvuqmcHcK4l/zlTHTISrhwLF0rdXMN9/ekHF1/2cTuilI70H2k4ut+OL/11Ye4XY5Y83uEIiacKMXZzGxGIEWU6wnwhbUDs16DSuc=
+  - secure: S2ylFbmhS89cQQGZeRPpM9Edrm856Tb6/WfQf5F+CL+afeiQYofkvS25pe1xbynz6Dc6wwZvDcg8PS7DsiqXTSd++p86TOHlJvslrVHxu14v5jTMg+E0AeHuS5/lgAFdVsDzCKq/vC+t5VTgyeZa9Yg68p14y0nAkg1bSg/QjEA=
