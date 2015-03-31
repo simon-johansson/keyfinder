@@ -3,9 +3,12 @@
 
 keyfinder = require '../lib/index'
 
-describe 'keyfinder module\n', ->
+describe 'keyfinder module', ->
 
-  describe 'keyfinder(object/array, [predicate = "string"])', ->
+  it 'module exports a single function\n', ->
+    expect(keyfinder).to.be.a "function"
+
+  describe 'keyfinder(object/array, "string")', ->
 
     it 'find key in single level object', ->
       obj =
@@ -115,7 +118,17 @@ describe 'keyfinder module\n', ->
       expect(keyfinder(true, 'predicate')).to.have.length 0
 
 
-  describe 'keyfinder(object/array, [callback = "function"])', ->
+  describe 'keyfinder(object/array, callback)', ->
+
+    fn = (obj) ->
+      list = []
+      keyfinder obj, (key, val, parent) ->
+        obj =
+          key: key
+          val: val
+          parent: parent
+        list.push obj
+      list
 
     it 'should be able to pass function instead of string as second argument', ->
       expect(-> keyfinder {a: 'aa'}, ->).to.not.throw /error/
@@ -126,16 +139,6 @@ describe 'keyfinder module\n', ->
         b: 'bb'
         c: 'cc'
 
-      fn = (obj) ->
-        list = []
-        keyfinder obj, (key, val, parent) ->
-          obj =
-            key: key
-            val: val
-            parent: parent
-          list.push obj
-        list
-
       results = fn obj
       expect(results).to.have.length 3
       expect(results).to.eql [
@@ -143,3 +146,18 @@ describe 'keyfinder module\n', ->
         { key: 'b', val: 'bb', parent: 'object' },
         { key: 'c', val: 'cc', parent: 'object' },
       ]
+
+    it 'third argument shoud match the type of the elements parent', ->
+      obj =
+        object: {
+          number: 123
+        }
+        array: [
+          'string'
+        ]
+
+      results = keyfinder obj, (key, val, parent) ->
+        if key is 'number'
+          expect(parent).to.eql 'object'
+        if val is 'string'
+          expect(parent).to.eql 'array'
