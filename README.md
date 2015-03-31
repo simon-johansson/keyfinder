@@ -10,12 +10,26 @@
 
 ## Install
 
+####Client
+```sh
+$ bower install keyfinder --save
+```
+
+####Node
 ```sh
 $ npm install keyfinder --save
 ```
 
-```sh
-$ bower install keyfinder --save
+##Include
+
+####Client
+```html
+<script src="bower_components/keyfinder/keyfinder.min.js"></script>
+```
+
+####Node
+```js
+var keyfinder = require('keyfinder');
 ```
 
 ## Usage
